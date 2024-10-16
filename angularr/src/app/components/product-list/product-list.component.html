@@ -1,0 +1,26 @@
+<button (click)="initializeForm()">Add New Product</button>
+<form [formGroup]="productForm" (ngSubmit)="submitForm()">
+  <input formControlName="name" placeholder="Product Name">
+  <button type="submit">{{ editing ? 'Update Product' : 'Add Product' }}</button>
+</form>
+
+<h2>Liste des Produits</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>
+        <button (click)="deleteProduct(product.id)">Supprimer</button>
+        <button (click)="initializeForm(product)">Modifier</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
